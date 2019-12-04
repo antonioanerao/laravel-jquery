@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Produto;
 use Illuminate\Http\Request;
 use \App\Post;
@@ -18,8 +19,8 @@ class PostsController extends Controller
         $this->post = $post;
     }
 
-    public function storePosts()
+    public function storePosts(PostRequest $request)
     {
-        return Response::json(Post::create(request()->all(), 200));
+        return Response::json(Post::create($request->all(), 200));
     }
 }

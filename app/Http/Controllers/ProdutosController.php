@@ -34,7 +34,7 @@ class ProdutosController extends Controller
         return view('create', compact('produtos', 'posts'));
     }
 
-    public function storeProduto(Request $request)
+    public function storeProduto(ProdutosRequest $request)
     {
         return Response::json(Produto::create($request->all(), 200));
     }

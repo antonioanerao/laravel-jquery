@@ -8,6 +8,9 @@
         $(document).ready(function() {
             $("#success-alert-produto").hide();
             $("#success-alert-post").hide();
+            $("#div-error-product").hide();
+            $("#div-error-post").hide();
+            $("#div-error-product").hide();
         });
     </script>
 
@@ -21,12 +24,14 @@
                         <form  id="add-produto">
                             {{ csrf_field() }} {{ method_field('POST') }}
                             <div class="modal-body">
-
+                                <div class="alert alert-danger" id="div-error-product">
+                                    <span id="message-error-product"></span>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="field-1" class="control-label">Nome Produto</label>
-                                            <input type="text" required name="nome" class="form-control">
+                                            <input type="text" name="nome" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -35,7 +40,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="field-1" class="control-label">Descrição Produto</label>
-                                            <textarea type="text" required name="descricao" class="form-control"></textarea>
+                                            <textarea type="text" name="descricao" class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -44,7 +49,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="field-1" class="control-label">Valor Produto</label>
-                                            <input type="text" required name="price" class="form-control">
+                                            <input type="text" name="price" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -90,12 +95,14 @@
                         <form  id="add-post">
                             {{ csrf_field() }} {{ method_field('POST') }}
                             <div class="modal-body">
-
+                                <div class="alert alert-danger" id="div-error-post">
+                                    <span id="message-error-post"></span>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="field-1" class="control-label">Título</label>
-                                            <input type="text" required name="titulo" class="form-control">
+                                            <label for="field-1" class="control-label carneiro">Título*</label>
+                                            <input type="text" name="titulo" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -103,8 +110,8 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="field-1" class="control-label">Descrição</label>
-                                            <textarea type="text" required name="descricao" class="form-control"></textarea>
+                                            <label for="field-1" class="control-label">Descrição*</label>
+                                            <textarea type="text" name="descricao" class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -126,6 +133,7 @@
                             <button type="button" class="close" data-dismiss="alert">x</button>
                             <strong>Sucesso</strong> Post publicado.
                         </div>
+
                         <div id="lista-posts">
                             @foreach($posts as $post)
                                 <b>Título: </b> {{ $post->titulo }} <br>
@@ -157,8 +165,18 @@
                         });
                     },
                     error: function(error){
-                        console.log(error)
-                        alert("Erro. Fale com o administrador do sistema");
+                        $("#div-error-product").fadeTo(2000, 500).slideUp(500, function(){
+                            $("#div-error-product").slideUp(500);
+                        });
+
+                        /* Faz um foreach para mostrar os erros */
+                        Object.keys(error.responseJSON.errors).forEach(function(key) {
+                            console.log(error.responseJSON.errors[key]);
+                            $('#message-error-product').show().html(error.responseJSON.errors[key]).css({
+                                'color': 'red',
+                                'text-align': 'center'
+                            });
+                        });
                     }
                 });
             });
@@ -175,10 +193,18 @@
                         $("#success-alert-post").fadeTo(2000, 500).slideUp(500, function(){
                             $("#success-alert-post").slideUp(500);
                         });
+                        $("#div-error-post").hide();
                     },
                     error: function(error){
-                        console.log(error)
-                        alert("Erro. Fale com o administrador do sistema");
+                        $("#div-error-post").fadeTo(2000, 500).slideUp(500, function(){
+                            $("#div-error-post").slideUp(500);
+                        });
+
+                        /* Faz um foreach para mostrar os erros */
+                        Object.keys(error.responseJSON.errors).forEach(function(key) {
+                            console.log(error.responseJSON.errors[key]);
+                            $('#message-error-post').show().text(error.responseJSON.errors[key]);
+                        });
                     }
                 });
             });
