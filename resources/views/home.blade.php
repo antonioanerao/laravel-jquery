@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <p>You are logged in! Go to <a href="{{ route('create') }}">create page</a></p>
                 </div>
             </div>
         </div>
