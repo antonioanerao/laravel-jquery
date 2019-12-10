@@ -31,7 +31,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="field-1" class="control-label">Nome Produto</label>
-                                            <input type="text" name="nome" class="form-control">
+                                            <input type="text" name="nome" required class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -40,7 +40,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="field-1" class="control-label">Descrição Produto</label>
-                                            <textarea type="text" name="descricao" class="form-control"></textarea>
+                                            <textarea type="text" name="descricao" required class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="field-1" class="control-label">Valor Produto</label>
-                                            <input type="text" name="price" class="form-control">
+                                            <input type="text" name="price" required class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="field-1" class="control-label carneiro">Título*</label>
-                                            <input type="text" name="titulo" class="form-control">
+                                            <input type="text" name="titulo" required class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="field-1" class="control-label">Descrição*</label>
-                                            <textarea type="text" name="descricao" class="form-control"></textarea>
+                                            <textarea type="text" name="descricao" required class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
